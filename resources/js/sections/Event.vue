@@ -4,7 +4,7 @@
 			<div class="col"><h2>Events Manager</h2></div>
 			<div class="col">
 				<div class="h-100 d-flex justify-content-end align-items-center">
-					<button class="btn btn-primary">New</button>
+					<router-link to="/admin/news" class="btn btn-primary">New</router-link>
 				</div>
 			</div>
 		</div>
