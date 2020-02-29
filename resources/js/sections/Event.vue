@@ -1,101 +1,92 @@
 <template>
-	<div class="wrapper">
-		<div class="row">
-			<div class="col"><h2>Events Manager</h2></div>
-			<div class="col">
-				<div class="h-100 d-flex justify-content-end align-items-center">
-					<button class="btn btn-primary">New</button>
-				</div>
-			</div>
-		</div>
-		<hr>
-		<div class="row mt-2">
-			<div class="col-12">
-				<div class="row">
-					<div class="col-8">
-						<div class="form-group">
-							<label for="title" class="custom-label">Title</label>
-							<input type="text" class="form-control custom-input" id="title" autocomplete="off">
-						</div>
-					</div>
-					<div class="col">
-						<div class="form-group">
-							<label for="location" class="custom-label">Location</label>
-							<input type="text" class="form-control custom-input" id="location" autocomplete="off">
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="description" class="custom-label">Description</label>
-					<textarea class="form-control custom-input" id="description" rows="5"></textarea>
-				</div>
-				<div class="form-group">
+	<div>
+		<v-container>	
+			<v-card>
+				<v-card-title>
+					Events
+					<v-spacer></v-spacer>
+				</v-card-title>
+				<v-container>
 					<div class="row">
-						<div class="col">
-							<label for="startDate" class="mt-1">Start Date</label>
-							<input type="date" class="form-control" id="startDate">
-						</div>
-						<div class="col">
-							<label for="startDate" class="mt-1">End Date</label>
-							<input type="date" class="form-control" id="endDate">
-						</div>
+						<div class="col-lg">
+							<router-link
+							to="/admin/addevent"
+							>
+							<v-btn medium color="primary" id="add-button">Add</v-btn>
+						</router-link>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+			</v-container>
+			<v-data-table
+			:headers="headers"
+			:items="events"
+			>
+			<template v-slot:item.action="{ item }">
+				<v-icon
+				small
+				class="mr-2"
+				>
+				fas fa-edit
+			</v-icon>
+			<v-icon
+			small
+			>
+			fas fa-lock
+		</v-icon>
+	</template>
+</v-data-table>
+</v-card>
+</v-container>
+</div>
 </template>
+
 <script>
 	export default {
-		mounted() {
-			this.setLabel();
+		data() {
+			return {
+				headers: [
+				{
+					text: 'Calamities',
+					align: 'start',
+					value: 'calamityName',
+				},
+				{ 
+					text: 'Start',
+					value: 'startDate',
+				},
+				{
+					text: 'End',
+					value: 'endDate',
+				},
+				{ 
+					text: 'Actions', 
+					value: 'action', 
+					sortable: false 	
+				},
+				],
+				events: [
+				{
+					calamityName: 'Taas Volcano Eruption',
+					startDate: 'mm/dd/yyyy',
+					endDate:'mm/dd/yyyy',
+
+				},
+				],
+			}
 		},
 		methods: {
-			setLabel() {
-				let inputs = this.$el.querySelectorAll(".custom-input");
-				let labels = this.$el.querySelectorAll(".custom-label");
-				for (let i = 0; i < inputs.length; i++) {
-					inputs[i].addEventListener("focus", () => {
-						labels[i].classList.add("active-label");
-						console.log("Test");
-					})
-					inputs[i].addEventListener("focusout", () => {
-						let text = inputs[i].value;
-						if (text.length < 1)
-							labels[i].classList.remove("active-label");
-					})
-				}
+			filterData() {
+
 			}
 		}
 	}
 </script>
-<style scoped>
-	.wrapper {
-		padding: 20px 50px;
-	}
-	hr {
-		margin-bottom: 0;
-	}
-	.form-group {
-		position: relative;
-		margin-bottom: 0;
-	}
-	.form-group label {
-		margin-bottom: .2rem;
-	}
-	.form-group .custom-label {
-		position: absolute;
-		top: 0;
-		left: 0;
-		padding: 5px;
-		color: #ababab;
-		transition: all 300ms ease-in-out;
-	}
-	.form-group .active-label {
-		top: -35px;
-		color: black;
-	}
-	.custom-input {
-		margin: 30px 0 0;
-	}
+<style type="text/css" scoped>
+.col-lg{
+	text-align: right;
+}
+#add-button{
+	background-color: #2980b9;
+	text-decoration: none !important;
+}
 </style>
