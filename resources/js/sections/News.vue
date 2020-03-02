@@ -20,6 +20,7 @@
 			<v-data-table
 			:headers="headers"
 			:items="events"
+			:light= true
 			>
 			<template v-slot:item.action="{ item }">
 				<v-icon
@@ -46,17 +47,22 @@
 			return {
 				headers: [
 				{
-					text: 'Calamities',
+					text: 'Title',
 					align: 'start',
-					value: 'calamityName',
+					value: 'newsTitle',
 				},
 				{ 
-					text: 'Start',
-					value: 'startDate',
+					text: 'Description',
+					value: 'newsDescription',
+					expand: true,
 				},
 				{
-					text: 'End',
-					value: 'endDate',
+					text: 'Date',
+					value: 'dateCreated',
+				},
+				{
+					text: 'Created by',
+					value: 'postUser',
 				},
 				{ 
 					text: 'Actions', 
@@ -66,10 +72,10 @@
 				],
 				events: [
 				{
-					calamityName: 'This is a news',
-					startDate: 'mm/dd/yyyy',
-					endDate:'mm/dd/yyyy',
-
+					newsTitle: 'This is a news',
+					newsDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum nunc aliquet bibendum enim.',
+					dateCreated:'mm/dd/yyyy',
+					postUser: 'Test',
 				},
 				],
 			}

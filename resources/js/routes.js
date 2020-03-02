@@ -9,10 +9,12 @@ import Admin from './pages/Admin'
 
 // Sections
 import UserSection from './sections/User'
+import UserSectionAdd from './sections/UserAdd'
 import EventSection from './sections/Event'
 import EventSectionAdd from './sections/EventAdd'
 import NewsSection from './sections/News'
 import NewsSectionAdd from './sections/NewsAdd'
+
 
 
 Vue.use(VueRouter)
@@ -59,6 +61,10 @@ const router = new VueRouter({
 				{
 					path: '/admin/addnews',
 					component: NewsSectionAdd
+				},
+				{
+					path: '/admin/adduser',
+					component: UserSectionAdd
 				}
 			]
 		},
